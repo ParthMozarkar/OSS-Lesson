@@ -1,0 +1,84 @@
+# Git Complete Commands Guide
+
+## 1. Install Git
+- Windows: Download from https://git-scm.com/download/win
+- macOS (using Homebrew): 
+  brew install git
+- Linux (Debian/Ubuntu): 
+  sudo apt-get install git
+
+## 2. Verify Installation
+git --version
+
+## 3. Configure Git (set your identity)
+git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"
+
+## 4. Connect GitHub account (SSH method recommended)
+# Generate SSH key:
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+# Start SSH agent:
+eval "$(ssh-agent -s)"
+# Add key to agent:
+ssh-add ~/.ssh/id_rsa
+# Copy public key and add to GitHub (Settings > SSH and GPG keys):
+cat ~/.ssh/id_rsa.pub
+
+# Test connection:
+ssh -T git@github.com
+
+## 5. Clone a Repository
+git clone git@github.com:username/repo.git
+cd repo
+
+## 6. Check Repo Status
+git status
+
+## 7. Make Changes
+# (edit your files in editor)
+
+## 8. Stage Changes
+git add filename            # add specific file
+git add .                   # add all changes
+
+## 9. Commit Changes
+git commit -m "Meaningful commit message"
+
+## 10. Push Changes to GitHub
+git push origin branch-name
+
+## 11. Create and Switch Branches
+git checkout -b new-feature   # create and switch
+git checkout branch-name      # switch existing
+
+## 12. Sync with Remote Repo (pull latest changes)
+git pull origin branch-name
+
+## 13. View Commit History
+git log
+
+## 14. Raise a Pull Request (PR)
+# Step 1: Push your feature branch
+git push origin new-feature
+
+# Step 2: Go to GitHub repository in browser
+# Step 3: Click "Compare & pull request"
+# Step 4: Add title, description, and submit PR
+
+-----------------------------------
+# Common Extra Commands
+
+## Undo Last Commit (without losing changes)
+git reset --soft HEAD~1
+
+## Discard Changes in a File
+git checkout -- filename
+
+## Remove Cached File from Staging
+git reset filename
+
+## Create .gitignore File
+# Example:
+echo "node_modules/" >> .gitignore
+git add .gitignore
+git commit -m "Add .gitignore"
